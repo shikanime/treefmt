@@ -103,7 +103,6 @@ func (f *Formatter) Apply(ctx context.Context, files []*walk.File) error {
 
 	// log out the command being executed
 	f.log.Debugf("executing: %s", cmd.String())
-
 	if out, err := cmd.CombinedOutput(); err != nil {
 		f.log.Errorf("failed to apply with options '%v': %s", f.config.Options, err)
 
