@@ -183,6 +183,9 @@ func Run(v *viper.Viper, statz *stats.Stats, cmd *cobra.Command, paths []string)
 		if errors.Is(err, io.EOF) {
 			// we have finished traversing
 			break
+		} else if errors.Is(err, context.DeadlineExceeded) && cfg.Watch {
+			// we timed out reading files, try again
+			continue
 		} else if err != nil {
 			// something went wrong
 			return fmt.Errorf("failed to read files: %w", err)

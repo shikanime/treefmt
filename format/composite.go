@@ -107,6 +107,8 @@ func (c *CompositeFormatter) Apply(ctx context.Context, files []*walk.File) erro
 		}
 	}
 
+	c.scheduler.apply(ctx)
+
 	return nil
 }
 
